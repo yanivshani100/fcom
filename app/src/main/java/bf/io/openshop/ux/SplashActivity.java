@@ -49,7 +49,6 @@ import bf.io.openshop.api.EndPoints;
 import bf.io.openshop.api.GsonRequest;
 import bf.io.openshop.entities.Shop;
 import bf.io.openshop.entities.ShopResponse;
-import bf.io.openshop.testing.EspressoIdlingResource;
 import bf.io.openshop.utils.Analytics;
 import bf.io.openshop.utils.MsgUtils;
 import bf.io.openshop.utils.Utils;
@@ -424,7 +423,6 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void animateContentVisible() {
         if (layoutIntroScreen != null && layoutContent != null && layoutIntroScreen.getVisibility() == View.VISIBLE) {
-            EspressoIdlingResource.increment();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -461,7 +459,7 @@ public class SplashActivity extends AppCompatActivity {
                                             .setListener(null);
                                 }
                             }
-                            EspressoIdlingResource.decrement();
+
                         }
                     }, 330);
                 }

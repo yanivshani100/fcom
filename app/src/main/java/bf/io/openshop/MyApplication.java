@@ -22,7 +22,6 @@ import com.facebook.FacebookSdk;
 import java.util.Locale;
 
 import bf.io.openshop.api.OkHttpStack;
-import bf.io.openshop.testing.EspressoIdlingResource;
 import timber.log.Timber;
 
 /**
@@ -132,15 +131,7 @@ public class MyApplication extends Application {
         return mRequestQueue;
     }
 
-    @VisibleForTesting
-    public void setRequestQueue(RequestQueue requestQueue) {
-        mRequestQueue = requestQueue;
-    }
 
-    @VisibleForTesting
-    public IdlingResource getCountingIdlingResource() {
-        return EspressoIdlingResource.getIdlingResource();
-    }
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         // set the default tag if tag is empty

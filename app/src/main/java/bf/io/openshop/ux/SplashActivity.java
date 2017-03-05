@@ -35,7 +35,6 @@ import android.widget.Spinner;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
 
 import java.util.List;
@@ -471,16 +470,15 @@ public class SplashActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Logs 'install' and 'app activate' App Events.
-        AppEventsLogger.activateApp(this);
+
+        Timber.d("SplashActivity.onResume() >> TBD Log to Analytics");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this);
+        Timber.d("SplashActivity.onPause() >> TBD Log to Analytics");
     }
 
     @Override

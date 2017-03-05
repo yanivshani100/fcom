@@ -46,20 +46,6 @@ public class MyApplication extends Application {
     }
 
 
-    /**
-     * Method sets app specific language localization by selected shop.
-     * Have to be called from every activity.
-     *
-     * @param lang language code.
-     */
-    public static void setAppLocale(String lang) {
-        Resources res = mInstance.getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        android.content.res.Configuration conf = res.getConfiguration();
-        conf.locale = new Locale(lang);
-        Timber.d("Setting language: %s", lang);
-        res.updateConfiguration(conf, dm);
-    }
 
     /**
      * Method provides defaultRetryPolice.

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.facebook.appevents.AppEventsConstants;
-import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -30,7 +29,6 @@ public class Analytics {
     public static final String POST_ORDER = "POST_ORDER";
     private static HashMap<String, Tracker> mTrackers = new HashMap<>();
 
-    private static AppEventsLogger facebookLogger;
     private static String campaignUri;
 
     private Analytics() {}
@@ -78,8 +76,6 @@ public class Analytics {
             // Send camping info only once time.
             sendCampaignInfo();
         }
-
-        facebookLogger = AppEventsLogger.newLogger(MyApplication.getInstance());
     }
 
     /**
@@ -100,18 +96,8 @@ public class Analytics {
     }
 
     private static void logFbEvent(String appEventConst, Double price, Bundle parameters) {
-        if (facebookLogger != null) {
-            if (parameters == null)
-                facebookLogger.logEvent(appEventConst);
-            else {
-                if (price == null)
-                    facebookLogger.logEvent(appEventConst, parameters);
-                else
-                    facebookLogger.logEvent(appEventConst, price, parameters);
-            }
-        } else {
-            Timber.e(new RuntimeException(), "null FB facebookLogger");
-        }
+        Timber.d("logFbEvent >> %s",appEventConst);
+
     }
 
     private static void sendEventToAppTrackers(Map<String, String> event) {

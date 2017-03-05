@@ -48,7 +48,6 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.facebook.appevents.AppEventsLogger;
 
 import org.json.JSONObject;
 
@@ -181,19 +180,11 @@ public class MainActivity extends AppCompatActivity implements DrawerFragment.Fr
         super.onCreate(savedInstanceState);
         mInstance = this;
 
-        Timber.d("%s onCreate", MainActivity.class.getSimpleName());
+        Timber.d("MainActivity.onCreate() >> %s", MainActivity.class.getSimpleName());
 
-        // Set app specific language localization by selected shop.
-        String lang = SettingsMy.getActualNonNullShop(this).getLanguage();
-        MyApplication.setAppLocale(lang);
 
         setContentView(R.layout.activity_main);
 
-//        if (BuildConfig.DEBUG) {
-//            // Only debug properties, used for checking image memory management.
-//            Picasso.with(this).setIndicatorsEnabled(true);
-//            Picasso.with(this).setLoggingEnabled(true);
-//        }
 
         // Initialize trackers and fbLogger
         Analytics.prepareTrackersAndFbLogger(SettingsMy.getActualNonNullShop(this), getApplicationContext());
@@ -243,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements DrawerFragment.Fr
 
             Analytics.logOpenedByNotification(target);
         }
+        Timber.d("MainActivity.onCreate() << %s", MainActivity.class.getSimpleName());
     }
 
     /**
@@ -765,8 +757,8 @@ public class MainActivity extends AppCompatActivity implements DrawerFragment.Fr
     @Override
     protected void onResume() {
         super.onResume();
-        // FB base events logging
-        AppEventsLogger.activateApp(this);
+
+        Timber.d("MainActivity.onResume() >> TBD Log to Analytics");
 
         // GCM registration
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
@@ -776,9 +768,9 @@ public class MainActivity extends AppCompatActivity implements DrawerFragment.Fr
     @Override
     protected void onPause() {
         super.onPause();
-        // FB base events logging
-        AppEventsLogger.deactivateApp(this);
-        MyApplication.getInstance().cancelPendingRequests(CONST.MAIN_ACTIVITY_REQUESTS_TAG);
+
+        Timber.d("MainActivity.onPause() >> TBD Log to Analytics");
+
 
         // GCM registration
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);

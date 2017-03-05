@@ -87,7 +87,6 @@ import bf.io.openshop.ux.fragments.OrdersHistoryFragment;
 import bf.io.openshop.ux.fragments.PageFragment;
 import bf.io.openshop.ux.fragments.ProductFragment;
 import bf.io.openshop.ux.fragments.SettingsFragment;
-import bf.io.openshop.ux.fragments.WishlistFragment;
 import timber.log.Timber;
 
 /**
@@ -468,7 +467,7 @@ public class MainActivity extends AppCompatActivity implements DrawerFragment.Fr
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_wish_list) {
-            onWishlistSelected();
+            Timber.d("onOptionsItemSelected() >>  Wishlist selected doing nothing");
             return true;
         } else if (id == R.id.action_cart) {
             onCartSelected();
@@ -651,18 +650,7 @@ public class MainActivity extends AppCompatActivity implements DrawerFragment.Fr
         });
     }
 
-    /**
-     * If user is logged in then {@link WishlistFragment} is launched . Otherwise is showed a login dialog.
-     */
-    public void onWishlistSelected() {
-        launchUserSpecificFragment(new WishlistFragment(), WishlistFragment.class.getSimpleName(), new LoginDialogInterface() {
-            @Override
-            public void successfulLoginOrRegistration(User user) {
-                // If login was successful launch WishlistFragment.
-                onWishlistSelected();
-            }
-        });
-    }
+
 
     /**
      * If user is logged in then {@link OrderCreateFragment} is launched . Otherwise is showed a login dialog.

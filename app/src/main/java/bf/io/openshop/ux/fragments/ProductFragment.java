@@ -462,20 +462,7 @@ public class ProductFragment extends Fragment {
                                     wishlistButton.setIcon(R.drawable.wish_list_pressed, R.drawable.wish_list);
                                     wishlistButton.showProgress(true);
                                     if (wishlistId != CONST.DEFAULT_EMPTY_ID) {
-                                        WishlistFragment.removeFromWishList(getActivity(), wishlistId, user, CONST.PRODUCT_REQUESTS_TAG, new RequestListener() {
-                                            @Override
-                                            public void requestSuccess(long newWishlistId) {
-                                                running = false;
-                                                wishlistButton.onProgressCompleted();
-                                                wishlistId = CONST.DEFAULT_EMPTY_ID;
-                                            }
-
-                                            @Override
-                                            public void requestFailed(VolleyError error) {
-                                                running = false;
-                                                wishlistButton.showProgress(false);
-                                            }
-                                        });
+                                        //Wishlist Removed
                                     } else {
                                         running = false;
                                         wishlistButton.showProgress(false);
@@ -484,35 +471,7 @@ public class ProductFragment extends Fragment {
                                 } else {
                                     inWishlist = true;
                                     wishlistButton.setIcon(R.drawable.wish_list, R.drawable.wish_list_pressed);
-                                    wishlistButton.showProgress(true);
-                                    WishlistFragment.addToWishList(getActivity(), product.getVariants().get(0).getId(), user, CONST.PRODUCT_REQUESTS_TAG, new RequestListener() {
-                                        @Override
-                                        public void requestSuccess(long newWishlistId) {
-                                            running = false;
-                                            wishlistButton.onProgressCompleted();
-                                            wishlistId = newWishlistId;
-
-                                            String result = getString(R.string.Product_added_to_wishlist);
-                                            Snackbar snackbar = Snackbar.make(productContainer, result, Snackbar.LENGTH_LONG)
-                                                    .setActionTextColor(ContextCompat.getColor(getActivity(), R.color.colorAccent))
-                                                    .setAction(R.string.Go_to_wishlist, new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View v) {
-                                                            if (getActivity() instanceof MainActivity)
-                                                                ((MainActivity) getActivity()).onWishlistSelected();
-                                                        }
-                                                    });
-                                            TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-                                            textView.setTextColor(Color.WHITE);
-                                            snackbar.show();
-                                        }
-
-                                        @Override
-                                        public void requestFailed(VolleyError error) {
-                                            running = false;
-                                            wishlistButton.showProgress(false);
-                                        }
-                                    });
+                                    //Wishlist Removed
                                 }
                             } else {
                                 running = false;
